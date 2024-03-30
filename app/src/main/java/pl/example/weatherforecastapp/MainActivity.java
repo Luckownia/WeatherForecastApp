@@ -25,7 +25,7 @@ import java.text.DecimalFormat;
 public class MainActivity extends AppCompatActivity {
     TextInputLayout textInputLayout;
     TextView textView;
-    private final String url = "https://api.openweathermap.org/data/3.0/onecall?lat=";
+    private final String url = "http://api.openweathermap.org/geo/1.0/direct?q=";
     private final String appid = "6b19c6b85668b0aa881c3d9a392fcbf8";
     DecimalFormat df = new DecimalFormat("#.##");
     @Override
@@ -44,7 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void getWeather(View view) {
         String tempUrl = "";
-        String city = textView.getText().toString().trim();
+        String city = textInputLayout.getEditText().toString().trim();
+        System.out.println("Miastooooooo");
+        System.out.println(city);
         if(city.equals("")){
             textView.setText("City field must be filled!!!");
         }else{
