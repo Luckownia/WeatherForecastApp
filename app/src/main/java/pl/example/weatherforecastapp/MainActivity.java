@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,9 @@ import java.text.DecimalFormat;
 public class MainActivity extends AppCompatActivity {
     EditText textInputLayout;
     TextView textView;
+    TextView weatherInfoCity;
+    TextView weatherInfoTemp;
+    ConstraintLayout weatherInfo;
     private final String url = "http://api.openweathermap.org/geo/1.0/direct?";
     private final String appid = "6b19c6b85668b0aa881c3d9a392fcbf8";
     double lat, lon;
@@ -47,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
         });
         textInputLayout = findViewById(R.id.editText1);
         textView = findViewById(R.id.textView);
+        weatherInfoCity = findViewById(R.id.weatherInfoCity);
+        weatherInfoTemp = findViewById(R.id.weatherInfoTemp);
+        weatherInfo = findViewById(R.id.weatherInfo);
     }
 
     public void getWeather(View view) {
@@ -55,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (city.equals("")) {
             textView.setText("City field must be filled!!!");
+            weatherInfo.setVisibility(View.INVISIBLE);
         } else {
             tempUrl = url + "q=" + city + "&appid=" + appid;
             StringRequest stringRequest = new StringRequest(Request.Method.GET, tempUrl, new Response.Listener<String>() {
@@ -93,8 +101,7 @@ public class MainActivity extends AppCompatActivity {
                                         float speedWind = jsonObjectWind.getInt("speed");
                                         JSONObject jsonObjectClouds = jsonResponse.getJSONObject("clouds");
                                         int cloudy = jsonObjectClouds.getInt("all");
-                                        output = "City=" + city + "\n"
-                                                + "description=" + description + "\n"
+                                        output = "description=" + description + "\n"
                                                 + "temperature=" + temp + "\n "
                                                 + "feels like=" + feelsLike + "\n "
                                                 + "Pressure=" + pressure + "\n"
@@ -102,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
                                                 + "Speed wind=" + speedWind + "\n"
                                                 + "Cloudy=" + cloudy + "\n";
                                         textView.setText(output);
+                                        weatherInfo.setVisibility(View.VISIBLE);
+                                        weatherInfoCity.setText(city);
+                                        weatherInfoTemp.setText(String.format("%.2f", temp) + "\u00B0");
+
                                     } catch (JSONException e) {
                                         throw new RuntimeException(e);
                                     }
@@ -116,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                             requestQueue2.add(stringRequest2);
                         } else{
                             textView.setText("City not found.");
+                            weatherInfo.setVisibility(View.INVISIBLE);
                         }
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
