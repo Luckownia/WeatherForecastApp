@@ -140,32 +140,34 @@ public class MainActivity extends AppCompatActivity {
                                     try {
                                         JSONObject jsonResponse = new JSONObject(response3);
                                         JSONArray jsonArray = jsonResponse.getJSONArray("list");
-                                        JSONObject jsonObjectWeather = jsonArray.getJSONObject(1);
-                                        JSONArray jsonArray2 = jsonObjectWeather.getJSONArray("weather");
-                                        JSONObject jsonObjectWeather2 = jsonArray2.getJSONObject(0);
-                                        String description = jsonObjectWeather2.getString("description");
-                                        JSONObject jsonObjectMain =jsonObjectWeather.getJSONObject("main");
-                                        double temp = jsonObjectMain.getDouble("temp") - 273.15;
-                                        double feelsLike = jsonObjectMain.getDouble("feels_like") - 273.15;
-                                        float pressure = jsonObjectMain.getInt("pressure");
-                                        int humidity = jsonObjectMain.getInt("humidity");
-                                        JSONObject jsonObjectWind = jsonObjectWeather.getJSONObject("wind");
-                                        float speedWind = jsonObjectWind.getInt("speed");
-                                        JSONObject jsonObjectClouds = jsonObjectWeather.getJSONObject("clouds");
-                                        int cloudy = jsonObjectClouds.getInt("all");
-                                        String dataTime = jsonObjectWeather.getString("dt_txt");
-                                        output =  "DataTime= "+dataTime+"\n"
-                                                + "description=" + description + "\n"
-                                                + "temperature=" + temp + "\n "
-                                                + "feels like=" + feelsLike + "\n "
-                                                + "Pressure=" + pressure + "\n"
-                                                + "Humidity=" + humidity + "\n"
-                                                + "Speed wind=" + speedWind + "\n"
-                                                + "Cloudy=" + cloudy + "\n";
-                                        longTermWeather.setText(output);
-                                        /*weatherInfo.setVisibility(View.VISIBLE);
-                                        weatherInfoCity.setText(city);
-                                        weatherInfoTemp.setText(String.format("%.2f", temp) + "\u00B0");*/
+                                        for(int i=1;i<=39;i++) {
+                                            JSONObject jsonObjectWeather = jsonArray.getJSONObject(i);
+                                            JSONArray jsonArray2 = jsonObjectWeather.getJSONArray("weather");
+                                            JSONObject jsonObjectWeather2 = jsonArray2.getJSONObject(0);
+                                            //String description = jsonObjectWeather2.getString("description");
+                                            JSONObject jsonObjectMain = jsonObjectWeather.getJSONObject("main");
+                                            double temp = jsonObjectMain.getDouble("temp") - 273.15;
+                                            /*double feelsLike = jsonObjectMain.getDouble("feels_like") - 273.15;
+                                            float pressure = jsonObjectMain.getInt("pressure");
+                                            int humidity = jsonObjectMain.getInt("humidity");
+                                            JSONObject jsonObjectWind = jsonObjectWeather.getJSONObject("wind");
+                                            float speedWind = jsonObjectWind.getInt("speed");
+                                            JSONObject jsonObjectClouds = jsonObjectWeather.getJSONObject("clouds");
+                                            int cloudy = jsonObjectClouds.getInt("all");*/
+                                            String dataTime = jsonObjectWeather.getString("dt_txt");
+                                            output += "DataTime= " + dataTime  //testowanie czy wyswietla mozna zakomentowac
+                                                    //+ "description=" + description + "\n"
+                                                    + " temperature=" + temp + "\n ";
+                                                    /*+ "feels like=" + feelsLike + "\n "
+                                                    + "Pressure=" + pressure + "\n"
+                                                    + "Humidity=" + humidity + "\n"
+                                                    + "Speed wind=" + speedWind + "\n"
+                                                    + "Cloudy=" + cloudy + "\n";*/
+                                            longTermWeather.setText(output);
+                                            /*weatherInfo.setVisibility(View.VISIBLE);
+                                            weatherInfoCity.setText(city);
+                                            weatherInfoTemp.setText(String.format("%.2f", temp) + "\u00B0");*/
+                                        }
 
                                     } catch (JSONException e) {
                                         throw new RuntimeException(e);
