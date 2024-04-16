@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageView;
 import android.content.Context;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.view.inputmethod.InputMethodManager;
@@ -31,7 +32,9 @@ import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
     EditText textInputLayout;
-    TextView textView,longTermWeather,weatherInfoCity,weatherInfoTemp, weatherInfoDescr;
+    TextView textView,longTermWeather,weatherInfoCity,weatherInfoTemp, weatherInfoDescr, futureTempOne, futureTempTwo, futureTempThree, futureTempFour,
+    futureHourOne, futureHourTwo, futureHourThree, futureHourFour;
+    ImageView futureImgOne, futureImgTwo, futureImgThree, futureImgFour;
     ConstraintLayout weatherInfo;
     private final String url = "http://api.openweathermap.org/geo/1.0/direct?";
     private final String appid = "6b19c6b85668b0aa881c3d9a392fcbf8";
@@ -55,6 +58,18 @@ public class MainActivity extends AppCompatActivity {
         weatherInfoDescr = findViewById(R.id.weatherInfoDescr);
         weatherInfo = findViewById(R.id.weatherInfo);
         longTermWeather = findViewById(R.id.longTermForecast);
+        futureImgOne = findViewById(R.id.futureImgOne);
+        futureImgTwo = findViewById(R.id.futureImgTwo);
+        futureImgThree = findViewById(R.id.futureImgThree);
+        futureImgFour = findViewById(R.id.futureImgFour);
+        futureTempOne = findViewById(R.id.futureTempOne);
+        futureTempTwo = findViewById(R.id.futureTempTwo);
+        futureTempThree = findViewById(R.id.futureTempThree);
+        futureTempFour = findViewById(R.id.futureTempFour);
+        futureHourOne = findViewById(R.id.futureHourOne);
+        futureHourTwo = findViewById(R.id.futureHourTwo);
+        futureHourThree = findViewById(R.id.futureHourThree);
+        futureHourFour = findViewById(R.id.futureHourFour);
     }
 
     public void getWeather(View view) {
@@ -146,11 +161,11 @@ public class MainActivity extends AppCompatActivity {
                                     try {
                                         JSONObject jsonResponse = new JSONObject(response3);
                                         JSONArray jsonArray = jsonResponse.getJSONArray("list");
-                                        for(int i=1;i<=39;i++) {
+                                        for(int i=1;i<=4;i++) {
                                             JSONObject jsonObjectWeather = jsonArray.getJSONObject(i);
                                             JSONArray jsonArray2 = jsonObjectWeather.getJSONArray("weather");
                                             JSONObject jsonObjectWeather2 = jsonArray2.getJSONObject(0);
-                                            //String description = jsonObjectWeather2.getString("description");
+                                            String description = jsonObjectWeather2.getString("description");
                                             JSONObject jsonObjectMain = jsonObjectWeather.getJSONObject("main");
                                             double temp = jsonObjectMain.getDouble("temp") - 273.15;
                                             /*double feelsLike = jsonObjectMain.getDouble("feels_like") - 273.15;
@@ -161,6 +176,68 @@ public class MainActivity extends AppCompatActivity {
                                             JSONObject jsonObjectClouds = jsonObjectWeather.getJSONObject("clouds");
                                             int cloudy = jsonObjectClouds.getInt("all");*/
                                             String dataTime = jsonObjectWeather.getString("dt_txt");
+                                            String hour = dataTime.substring(dataTime.indexOf(' ') + 1, dataTime.lastIndexOf(':'));
+                                            int imageResource;
+                                            switch (description) {
+                                                case "overcast clouds":
+                                                    imageResource = R.drawable.clouds;
+                                                    break;
+                                                case "light rain":
+                                                    imageResource = R.drawable.rain;
+                                                    break;
+                                                case "rain":
+                                                    imageResource = R.drawable.rain;
+                                                    break;
+                                                case "scattered clouds":
+                                                    imageResource = R.drawable.clouds;
+                                                    break;
+                                                case "few clouds":
+                                                    imageResource = R.drawable.clouds;
+                                                    break;
+                                                case "broken clouds":
+                                                    imageResource = R.drawable.clouds;
+                                                    break;
+                                                case "light snow":
+                                                    imageResource = R.drawable.snow;
+                                                    break;
+                                                case "snow":
+                                                    imageResource = R.drawable.snow;
+                                                    break;
+                                                case "clear sky":
+                                                    imageResource = R.drawable.sun;
+                                                    break;
+                                                case "sunrise":
+                                                    imageResource = R.drawable.sun;
+                                                    break;
+                                                default:
+                                                    imageResource = R.drawable.unknown_weather; // Ustawienie domyślnego obrazka w przypadku braku dopasowania
+                                                    break;
+                                            }
+                                            switch (i) {
+                                                case 1:
+                                                    futureTempOne.setText(String.format("%.2f", temp) + "\u00B0");
+                                                    futureHourOne.setText(hour);
+                                                    futureImgOne.setImageResource(imageResource);
+                                                    break;
+                                                case 2:
+                                                    futureTempTwo.setText(String.format("%.2f", temp) + "\u00B0");
+                                                    futureHourTwo.setText(hour);
+                                                    futureImgTwo.setImageResource(imageResource);
+                                                    break;
+                                                case 3:
+                                                    futureTempThree.setText(String.format("%.2f", temp) + "\u00B0");
+                                                    futureHourThree.setText(hour);
+                                                    futureImgThree.setImageResource(imageResource);
+                                                    break;
+                                                case 4:
+                                                    futureTempFour.setText(String.format("%.2f", temp) + "\u00B0");
+                                                    futureHourFour.setText(hour);
+                                                    futureImgFour.setImageResource(imageResource);
+                                                    break;
+                                                default:
+                                                    // Obsługa, gdy przekraczasz maksymalną liczbę przyszłych temperatur
+                                                    break;
+                                            }
                                             output += "DataTime= " + dataTime  //testowanie czy wyswietla mozna zakomentowac
                                                     //+ "description=" + description + "\n"
                                                     + " temperature=" + temp + "\n ";
@@ -228,6 +305,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "few clouds":
                 polishDescription = "Pochmurno";
+                break;
+            case "broken clouds":
+                polishDescription = "Rozbite chmury";
                 break;
             case "rain":
                 polishDescription = "Deszcz";
