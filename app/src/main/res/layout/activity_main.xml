@@ -39,18 +39,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="181dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="182dp"
+        android:layout_marginBottom="59dp"
         android:text="Pogoda"
         android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/longTermForecast"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/weatherInfo" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/weatherInfo"
-        android:layout_width="328dp"
-        android:layout_height="231dp"
+        android:layout_width="325dp"
+        android:layout_height="335dp"
         android:layout_marginStart="45dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="45dp"
@@ -80,29 +82,42 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="70dp"
             android:layout_marginEnd="71dp"
-            android:layout_marginBottom="116dp"
+            android:layout_marginBottom="220dp"
             android:text="Temp"
             android:textAlignment="center"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/weatherInfoDescr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="101dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="103dp"
+            android:layout_marginBottom="180dp"
+            android:text="Description"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weatherInfoTemp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/longTermForecast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="174dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="179dp"
-        android:layout_marginBottom="72dp"
+        android:layout_marginStart="118dp"
+        android:layout_marginEnd="119dp"
+        android:layout_marginBottom="39dp"
         android:text="Long-term weather forecast"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

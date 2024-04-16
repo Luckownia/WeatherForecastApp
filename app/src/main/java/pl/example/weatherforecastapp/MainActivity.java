@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Context;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +31,7 @@ import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
     EditText textInputLayout;
-    TextView textView,longTermWeather,weatherInfoCity,weatherInfoTemp;
+    TextView textView,longTermWeather,weatherInfoCity,weatherInfoTemp, weatherInfoDescr;
     ConstraintLayout weatherInfo;
     private final String url = "http://api.openweathermap.org/geo/1.0/direct?";
     private final String appid = "6b19c6b85668b0aa881c3d9a392fcbf8";
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         weatherInfoCity = findViewById(R.id.weatherInfoCity);
         weatherInfoTemp = findViewById(R.id.weatherInfoTemp);
+        weatherInfoDescr = findViewById(R.id.weatherInfoDescr);
         weatherInfo = findViewById(R.id.weatherInfo);
         longTermWeather = findViewById(R.id.longTermForecast);
     }
@@ -90,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                                         JSONArray jsonArray = jsonResponse.getJSONArray("weather");
                                         JSONObject jsonObjectWeather = jsonArray.getJSONObject(0);
                                         String description = jsonObjectWeather.getString("description");
+                                        String polishDescription = translateWeatherDescription(description);
                                         JSONObject jsonObjectMain = jsonResponse.getJSONObject("main");
                                         double temp = jsonObjectMain.getDouble("temp") - 273.15;
                                         double feelsLike = jsonObjectMain.getDouble("feels_like") - 273.15;
@@ -110,6 +114,8 @@ public class MainActivity extends AppCompatActivity {
                                         weatherInfo.setVisibility(View.VISIBLE);
                                         weatherInfoCity.setText(city);
                                         weatherInfoTemp.setText(String.format("%.2f", temp) + "\u00B0");
+                                        weatherInfoDescr.setText(polishDescription);
+                                        hideKeyboard();
 
                                     } catch (JSONException e) {
                                         throw new RuntimeException(e);
@@ -163,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                                                     + "Humidity=" + humidity + "\n"
                                                     + "Speed wind=" + speedWind + "\n"
                                                     + "Cloudy=" + cloudy + "\n";*/
-                                            longTermWeather.setText(output);
+                                            //longTermWeather.setText(output);
                                             /*weatherInfo.setVisibility(View.VISIBLE);
                                             weatherInfoCity.setText(city);
                                             weatherInfoTemp.setText(String.format("%.2f", temp) + "\u00B0");*/
@@ -197,6 +203,48 @@ public class MainActivity extends AppCompatActivity {
             });
             RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
             requestQueue.add(stringRequest);
+        }
+    }
+    private String translateWeatherDescription(String description) {
+        String polishDescription;
+        switch (description) {
+            case "overcast clouds":
+                polishDescription = "Zachmurzenie całkowite";
+                break;
+            case "light rain":
+                polishDescription = "Lekki deszcz";
+                break;
+            case "scattered clouds":
+                polishDescription = "Rozproszone chmury";
+                break;
+            case "light snow":
+                polishDescription = "Lekki śnieg";
+                break;
+            case "snow":
+                polishDescription = "Śnieg";
+                break;
+            case "sunrise":
+                polishDescription = "Wschód słońca";
+                break;
+            case "few clouds":
+                polishDescription = "Pochmurno";
+                break;
+            case "rain":
+                polishDescription = "Deszcz";
+                break;
+            case "clear sky":
+                polishDescription = "Czyste Niebo";
+                break;
+            default:
+                polishDescription = "brak tłumaczenia";
+        }
+        return polishDescription;
+    }
+    private void hideKeyboard() {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        View view = getCurrentFocus();
+        if (view != null) {
+            inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
 }
