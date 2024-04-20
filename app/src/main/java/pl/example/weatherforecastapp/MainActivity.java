@@ -20,6 +20,12 @@ import android.widget.Toast;
 import android.widget.ImageView;
 import android.content.Context;
 
+import android.app.ProgressDialog;
+
+import android.animation.ObjectAnimator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.Animator;
+
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import android.view.inputmethod.InputMethodManager;
@@ -51,9 +57,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     EditText textInputLayout;
     TextView textView,longTermWeather,weatherInfoCity,weatherInfoTemp, weatherInfoDescr, futureTempOne, futureTempTwo, futureTempThree, futureTempFour,
     futureHourOne, futureHourTwo, futureHourThree, futureHourFour;
-    ImageView futureImgOne, futureImgTwo, futureImgThree, futureImgFour;
+    ImageView futureImgOne, futureImgTwo, futureImgThree, futureImgFour, button_location;
+    Button button_searchView;
     ConstraintLayout weatherInfo;
-    Button button_location;
     LocationManager locationManager;
     private final String url = "http://api.openweathermap.org/geo/1.0/direct?";
     private final String appid = "6b19c6b85668b0aa881c3d9a392fcbf8";
@@ -90,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         futureHourThree = findViewById(R.id.futureHourThree);
         futureHourFour = findViewById(R.id.futureHourFour);
         button_location = findViewById(R.id.currentLocation);
+        button_searchView = findViewById(R.id.searchView2);
 
         //Asking for location permission
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)!=
@@ -101,21 +108,61 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         button_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //create method
-                getLocation();
+                // Definicja animacji mrugania
+                ObjectAnimator animator = ObjectAnimator.ofFloat(button_location, "alpha", 1f, 0f, 1f);
+                animator.setDuration(500); // Czas trwania animacji w milisekundach
+
+                // Ustawienie nasłuchiwacza zakończenia animacji
+                animator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        // Tutaj możemy wywołać funkcję, która ma być wykonana po zakończeniu animacji
+                        // Na przykład, możemy tutaj umieścić kod związany z pobieraniem lokalizacji
+                        getLocation();
+                    }
+                });
+
+                // Rozpoczęcie animacji
+                animator.start();
             }
         });
+
+        button_searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Definicja animacji mrugania
+                ObjectAnimator animator = ObjectAnimator.ofFloat(button_searchView, "alpha", 1f, 0f, 1f);
+                animator.setDuration(500); // Czas trwania animacji w milisekundach
+
+                // Ustawienie nasłuchiwacza zakończenia animacji
+                animator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        // Tutaj możemy wywołać funkcję, która ma być wykonana po zakończeniu animacji
+                        // Na przykład, możemy tutaj umieścić kod związany z wyszukiwaniem
+                        getWeather(v);
+                    }
+                });
+
+                // Rozpoczęcie animacji
+                animator.start();
+            }
+        });
+
+
     }
 
     public void getWeather(View view) {
         String tempUrl = "";
         String city = textInputLayout.getText().toString().trim();
-        //Klawiatura nie ma polskich znakow, brak możliwosci ą,ę dla Api jest to obojętne
         if (city.equals("")) {
-            textView.setText("City field must be filled!!!");
+            // Wyświetlenie powiadomienia, gdy pole miasta jest puste
+            Toast.makeText(getApplicationContext(), "Wpisz nazwę miasta", Toast.LENGTH_SHORT).show();
             weatherInfo.setVisibility(View.INVISIBLE);
         } else {
-            tempUrl = url + "q=" + city + "&appid=" + appid;// http://api.openweathermap.org/geo/1.0/direct?q=Gorlice&appid=6b19c6b85668b0aa881c3d9a392fcbf8
+            tempUrl = url + "q=" + city + "&appid=" + appid;
             StringRequest stringRequest = new StringRequest(Request.Method.GET, tempUrl, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
@@ -128,9 +175,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                             lon = jsonObject.getDouble("lon");
                             System.out.println(lat);
                             System.out.println(lon);
-                            getWeatherDetails(lat,lon);
-                        } else{
-                            textView.setText("City not found.");
+                            getWeatherDetails(lat, lon);
+                        } else {
+                            // Wyświetlenie powiadomienia, gdy miasto nie zostało znalezione
+                            Toast.makeText(getApplicationContext(), "Miasto nie zostało znalezione", Toast.LENGTH_SHORT).show();
                             weatherInfo.setVisibility(View.INVISIBLE);
                         }
                     } catch (JSONException e) {
@@ -140,7 +188,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError volleyError) {
-                    Toast.makeText(getApplicationContext(), volleyError.toString().trim(), Toast.LENGTH_SHORT).show();
+                    // Wyświetlenie powiadomienia w przypadku błędu żądania
+                    Toast.makeText(getApplicationContext(), "Błąd podczas pobierania danych", Toast.LENGTH_SHORT).show();
                 }
             });
             RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -183,10 +232,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                             + "Cloudy=" + cloudy + "\n";
                     textView.setText(output);
                     weatherInfo.setVisibility(View.VISIBLE);
-                    weatherInfoCity.setText(city);
+                    weatherInfoCity.setText(city); //czasem tu dziwne nazwy daje
                     weatherInfoTemp.setText(String.format("%.2f", temp) + "\u00B0");
                     weatherInfoDescr.setText(polishDescription);
                     hideKeyboard();
+                    textInputLayout.setText("");
 
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
@@ -218,8 +268,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         JSONArray jsonArray2 = jsonObjectWeather.getJSONArray("weather");
                         JSONObject jsonObjectWeather2 = jsonArray2.getJSONObject(0);
                         String description = jsonObjectWeather2.getString("description");
-                        //test
-                        Log.d("desc", description);
+                        //Log.d("desc", description); jakby nie działało tłumaczenie albo ikonka to mozna sprawdzic
                         JSONObject jsonObjectMain = jsonObjectWeather.getJSONObject("main");
                         double temp = jsonObjectMain.getDouble("temp") - 273.15;
                     /*double feelsLike = jsonObjectMain.getDouble("feels_like") - 273.15;
@@ -252,6 +301,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                 imageResource = R.drawable.clouds;
                                 break;
                             case "haze":
+                                imageResource = R.drawable.clouds;
+                                break;
+                            case "mist":
                                 imageResource = R.drawable.clouds;
                                 break;
                             case "broken clouds":
@@ -374,6 +426,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             case "haze":
                 polishDescription = "Mgła";
                 break;
+            case "mist":
+                polishDescription = "Mgła";
+                break;
             default:
                 polishDescription = "brak tłumaczenia";
         }
@@ -396,6 +451,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             lat = addresses.get(0).getLatitude();
             lon = addresses.get(0).getLongitude();
             //textView.setText(address);
+
             getWeatherDetails(lat,lon);
 
         }catch (Exception e){
@@ -403,16 +459,32 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
     @SuppressLint("MissingPermission")
-    private void getLocation() {
-
+    public void getLocation() {
         try {
-            locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,5,MainActivity.this);
+            // Wyświetlenie ProgressDialog podczas ładowania danych
+            ProgressDialog progressDialog = ProgressDialog.show(this, "Ładowanie danych", "Proszę czekać...", true);
 
-        }catch (Exception e){
+            locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, new LocationListener() {
+                @Override
+                public void onLocationChanged(@NonNull Location location) {
+                    try {
+                        Geocoder geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
+                        List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                        String address = addresses.get(0).getAddressLine(0);
+                        double lat = addresses.get(0).getLatitude();
+                        double lon = addresses.get(0).getLongitude();
+                        getWeatherDetails(lat, lon);
+                        progressDialog.dismiss(); // Zamknięcie ProgressDialog po załadowaniu danych
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        progressDialog.dismiss(); // Zamknięcie ProgressDialog w przypadku błędu
+                    }
+                }
+            });
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
 }
