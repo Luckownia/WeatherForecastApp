@@ -218,6 +218,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         JSONArray jsonArray2 = jsonObjectWeather.getJSONArray("weather");
                         JSONObject jsonObjectWeather2 = jsonArray2.getJSONObject(0);
                         String description = jsonObjectWeather2.getString("description");
+                        //test
+                        Log.d("desc", description);
                         JSONObject jsonObjectMain = jsonObjectWeather.getJSONObject("main");
                         double temp = jsonObjectMain.getDouble("temp") - 273.15;
                     /*double feelsLike = jsonObjectMain.getDouble("feels_like") - 273.15;
@@ -237,6 +239,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                             case "light rain":
                                 imageResource = R.drawable.rain;
                                 break;
+                            case "moderate rain":
+                                imageResource = R.drawable.rain;
+                                break;
                             case "rain":
                                 imageResource = R.drawable.rain;
                                 break;
@@ -244,6 +249,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                 imageResource = R.drawable.clouds;
                                 break;
                             case "few clouds":
+                                imageResource = R.drawable.clouds;
+                                break;
+                            case "haze":
                                 imageResource = R.drawable.clouds;
                                 break;
                             case "broken clouds":
@@ -260,6 +268,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                 break;
                             case "sunrise":
                                 imageResource = R.drawable.sun;
+                                break;
+                            case "light intensity shower rain":
+                                imageResource = R.drawable.rain;
                                 break;
                             default:
                                 imageResource = R.drawable.unknown_weather; // Ustawienie domyślnego obrazka w przypadku braku dopasowania
@@ -353,6 +364,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 break;
             case "clear sky":
                 polishDescription = "Czyste Niebo";
+                break;
+            case "light intensity shower rain":
+                polishDescription = "Lekki deszcz";
+                break;
+            case "moderate rain":
+                polishDescription = "Lekki deszcz";
+                break;
+            case "haze":
+                polishDescription = "Mgła";
                 break;
             default:
                 polishDescription = "brak tłumaczenia";
