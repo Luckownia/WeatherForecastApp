@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     futureHourOne, futureHourTwo, futureHourThree, futureHourFour;
     ImageView futureImgOne, futureImgTwo, futureImgThree, futureImgFour, button_location;
     Button button_searchView;
-    ConstraintLayout weatherInfo;
+    ConstraintLayout weatherInfo,weatherInfoDetails;
     LocationManager locationManager;
     private final String url = "http://api.openweathermap.org/geo/1.0/direct?";
     private final String appid = "6b19c6b85668b0aa881c3d9a392fcbf8";
@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         weatherInfoTemp = findViewById(R.id.weatherInfoTemp);
         weatherInfoDescr = findViewById(R.id.weatherInfoDescr);
         weatherInfo = findViewById(R.id.weatherInfo);
+        weatherInfoDetails = findViewById(R.id.weatherInfoDetails);
         longTermWeather = findViewById(R.id.longTermForecast);
         futureImgOne = findViewById(R.id.futureImgOne);
         futureImgTwo = findViewById(R.id.futureImgTwo);
@@ -161,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             // Wyświetlenie powiadomienia, gdy pole miasta jest puste
             Toast.makeText(getApplicationContext(), "Wpisz nazwę miasta", Toast.LENGTH_SHORT).show();
             weatherInfo.setVisibility(View.INVISIBLE);
+            weatherInfoDetails.setVisibility(View.INVISIBLE);
         } else {
             tempUrl = url + "q=" + city + "&appid=" + appid;
             StringRequest stringRequest = new StringRequest(Request.Method.GET, tempUrl, new Response.Listener<String>() {
@@ -182,6 +184,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                             // Wyświetlenie powiadomienia, gdy miasto nie zostało znalezione
                             Toast.makeText(getApplicationContext(), "Miasto nie zostało znalezione", Toast.LENGTH_SHORT).show();
                             weatherInfo.setVisibility(View.INVISIBLE);
+                            weatherInfoDetails.setVisibility(View.INVISIBLE);
                         }
                     } catch (JSONException e) {
                         throw new RuntimeException(e);
@@ -234,6 +237,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                             + "Cloudy=" + cloudy + "\n";
                     textView.setText(output);
                     weatherInfo.setVisibility(View.VISIBLE);
+                    weatherInfoDetails.setVisibility(View.VISIBLE);
                     //weatherInfoCity.setText(city); //czasem tu dziwne nazwy daje
                     weatherInfoTemp.setText(String.format("%.2f", temp) + "\u00B0");
                     weatherInfoDescr.setText(polishDescription);
