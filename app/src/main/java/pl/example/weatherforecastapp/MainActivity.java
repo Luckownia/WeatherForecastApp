@@ -173,6 +173,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
                             lat = jsonObject.getDouble("lat");
                             lon = jsonObject.getDouble("lon");
+                            String city = jsonObject.getString("name");
+                            weatherInfoCity.setText(city);
                             System.out.println(lat);
                             System.out.println(lon);
                             getWeatherDetails(lat, lon);
@@ -232,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                             + "Cloudy=" + cloudy + "\n";
                     textView.setText(output);
                     weatherInfo.setVisibility(View.VISIBLE);
-                    weatherInfoCity.setText(city); //czasem tu dziwne nazwy daje
+                    //weatherInfoCity.setText(city); //czasem tu dziwne nazwy daje
                     weatherInfoTemp.setText(String.format("%.2f", temp) + "\u00B0");
                     weatherInfoDescr.setText(polishDescription);
                     hideKeyboard();
@@ -450,9 +452,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             String address = addresses.get(0).getAddressLine(0); //cały adress current location miejscowsci gdzies USA
             lat = addresses.get(0).getLatitude();
             lon = addresses.get(0).getLongitude();
-            //textView.setText(address);
+            longTermWeather.setText(address);
 
-            getWeatherDetails(lat,lon);
+            //getWeatherDetails(lat,lon);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -475,6 +477,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         double lat = addresses.get(0).getLatitude();
                         double lon = addresses.get(0).getLongitude();
                         getWeatherDetails(lat, lon);
+                        String[] parts = address.split(","); // Dzielimy adres po przecinkach
+                        if (parts.length > 1) {
+                            String cityInfo = parts[1].trim(); // Wybieramy drugą część (indeks 1), usuwamy białe znaki
+                            String[] cityParts = cityInfo.split("\\s+"); // Dzielimy miasto na części po białych znakach
+                            if (cityParts.length > 1) {
+                                String city_loc = cityParts[1]; // Łączymy pierwsze dwie części
+                                weatherInfoCity.setText(city_loc);
+                            }
+                        }
+                        System.out.println(address);
                         progressDialog.dismiss(); // Zamknięcie ProgressDialog po załadowaniu danych
                     } catch (Exception e) {
                         e.printStackTrace();
