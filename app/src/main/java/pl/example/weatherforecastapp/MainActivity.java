@@ -56,7 +56,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity implements LocationListener {
     EditText textInputLayout;
     TextView textView,longTermWeather,weatherInfoCity,weatherInfoTemp, weatherInfoDescr, futureTempOne, futureTempTwo, futureTempThree, futureTempFour,
-    futureHourOne, futureHourTwo, futureHourThree, futureHourFour;
+    futureHourOne, futureHourTwo, futureHourThree, futureHourFour,weatherInfoPressure,weatherInfoFeelsLike,weatherInfoHumidity,weatherInfoWindSpeed;
     ImageView futureImgOne, futureImgTwo, futureImgThree, futureImgFour, button_location;
     Button button_searchView;
     ConstraintLayout weatherInfo,weatherInfoDetails;
@@ -98,6 +98,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         futureHourFour = findViewById(R.id.futureHourFour);
         button_location = findViewById(R.id.currentLocation);
         button_searchView = findViewById(R.id.searchView2);
+        weatherInfoPressure = findViewById(R.id.weatherInfoPressure);
+        weatherInfoFeelsLike = findViewById(R.id.weatherInfoFeelsLike);
+        weatherInfoHumidity = findViewById(R.id.weatherInfoHumidity);
+        weatherInfoWindSpeed = findViewById(R.id.weatherInfoWindSpeed);
 
         //Asking for location permission
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION)!=
@@ -241,8 +245,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     //weatherInfoCity.setText(city); //czasem tu dziwne nazwy daje
                     weatherInfoTemp.setText(String.format("%.2f", temp) + "\u00B0");
                     weatherInfoDescr.setText(polishDescription);
+                    weatherInfoPressure.setText("Pressure: "+String.valueOf(pressure)+" hPa");
+                    weatherInfoFeelsLike.setText("FeelsLike: "+String.format("%.2f", feelsLike) + "\u00B0");
+                    weatherInfoHumidity.setText("Humidity: "+String.valueOf(humidity)+" %");
+                    weatherInfoWindSpeed.setText("WindSpeed: "+String.valueOf(speedWind)+" m/s");
                     hideKeyboard();
                     textInputLayout.setText("");
+
 
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
