@@ -279,9 +279,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/weatherInfoDetails"
         android:layout_width="372dp"
-        android:layout_height="184dp"
+        android:layout_height="164dp"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/border"
         android:visibility="invisible"
         app:cardCornerRadius="56dp"
         app:circularflow_defaultRadius="50dp"
@@ -293,9 +294,9 @@
 
         <TextView
             android:id="@+id/weatherInfoPressure"
-            android:layout_width="147dp"
+            android:layout_width="107dp"
             android:layout_height="19dp"
-            android:layout_marginStart="23dp"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="36dp"
             android:text="Pressure"
             app:layout_constraintStart_toStartOf="parent"
