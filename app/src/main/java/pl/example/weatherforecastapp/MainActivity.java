@@ -245,10 +245,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     //weatherInfoCity.setText(city); //czasem tu dziwne nazwy daje
                     weatherInfoTemp.setText(String.format("%.2f", temp) + "\u00B0");
                     weatherInfoDescr.setText(polishDescription);
-                    weatherInfoPressure.setText("Pressure: "+String.valueOf(pressure)+" hPa");
-                    weatherInfoFeelsLike.setText("FeelsLike: "+String.format("%.2f", feelsLike) + "\u00B0");
-                    weatherInfoHumidity.setText("Humidity: "+String.valueOf(humidity)+" %");
-                    weatherInfoWindSpeed.setText("WindSpeed: "+String.valueOf(speedWind)+" m/s");
+                    weatherInfoPressure.setText(String.valueOf(pressure)+" hPa");
+                    weatherInfoFeelsLike.setText(String.format("%.2f", feelsLike) + "\u00B0");
+                    weatherInfoHumidity.setText(String.valueOf(humidity)+" %");
+                    weatherInfoWindSpeed.setText(String.valueOf(speedWind)+" m/s");
                     hideKeyboard();
                     textInputLayout.setText("");
 
@@ -337,6 +337,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                 imageResource = R.drawable.sun;
                                 break;
                             case "light intensity shower rain":
+                                imageResource = R.drawable.rain;
+                                break;
+                            case "heavy intensity rain":
                                 imageResource = R.drawable.rain;
                                 break;
                             default:
@@ -443,6 +446,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 break;
             case "mist":
                 polishDescription = "Mgła";
+                break;
+            case "heavy intensity rain":
+                polishDescription = "Ulewa";
                 break;
             default:
                 polishDescription = "brak tłumaczenia";
