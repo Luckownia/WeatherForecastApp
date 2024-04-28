@@ -339,8 +339,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                             case "light intensity shower rain":
                                 imageResource = R.drawable.rain;
                                 break;
+                            case "very heavy rain":
+                                imageResource = R.drawable.rain;
+                                break;
                             case "heavy intensity rain":
                                 imageResource = R.drawable.rain;
+                                break;
+                            case "thunderstorm":
+                                imageResource = R.drawable.thunderstorm;
                                 break;
                             default:
                                 imageResource = R.drawable.unknown_weather; // Ustawienie domyślnego obrazka w przypadku braku dopasowania
@@ -423,6 +429,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             case "sunrise":
                 polishDescription = "Wschód słońca";
                 break;
+            case "thunderstorm":
+                polishDescription = "Burza";
+                break;
             case "few clouds":
                 polishDescription = "Pochmurno";
                 break;
@@ -448,6 +457,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 polishDescription = "Mgła";
                 break;
             case "heavy intensity rain":
+                polishDescription = "Ulewa";
+                break;
+            case "very heavy rain":
                 polishDescription = "Ulewa";
                 break;
             default:
