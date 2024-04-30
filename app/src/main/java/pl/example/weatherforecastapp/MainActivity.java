@@ -301,19 +301,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                 imageResource = R.drawable.clouds;
                                 break;
                             case "light rain":
-                                imageResource = R.drawable.rain;
+                                imageResource = R.drawable.smallrain;
                                 break;
                             case "moderate rain":
-                                imageResource = R.drawable.rain;
+                                imageResource = R.drawable.smallrain;
                                 break;
                             case "rain":
-                                imageResource = R.drawable.rain;
+                                imageResource = R.drawable.smallrain;
                                 break;
                             case "scattered clouds":
-                                imageResource = R.drawable.clouds;
+                                imageResource = R.drawable.shatteredclouds;
                                 break;
                             case "few clouds":
-                                imageResource = R.drawable.clouds;
+                                imageResource = R.drawable.shatteredclouds;
                                 break;
                             case "haze":
                                 imageResource = R.drawable.clouds;
@@ -322,7 +322,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                 imageResource = R.drawable.clouds;
                                 break;
                             case "broken clouds":
-                                imageResource = R.drawable.clouds;
+                                imageResource = R.drawable.shatteredclouds;
                                 break;
                             case "light snow":
                                 imageResource = R.drawable.snow;
@@ -337,13 +337,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                 imageResource = R.drawable.sun;
                                 break;
                             case "light intensity shower rain":
-                                imageResource = R.drawable.rain;
+                                imageResource = R.drawable.smallrain;
                                 break;
                             case "very heavy rain":
-                                imageResource = R.drawable.rain;
+                                imageResource = R.drawable.heavyrain;
                                 break;
                             case "heavy intensity rain":
-                                imageResource = R.drawable.rain;
+                                imageResource = R.drawable.heavyrain;
                                 break;
                             case "thunderstorm":
                                 imageResource = R.drawable.thunderstorm;
