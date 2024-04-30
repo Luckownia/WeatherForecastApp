@@ -4,7 +4,7 @@
 ### Źródła
 - [Dokumentacja Android Developer](https://developer.android.com/docs)
 ### Prezentacja
-- [Link do prezentacji](tulinkatrzebawstawic)
+- [Link do prezentacji](https://github.com/Luckownia/WeatherForecastApp/blob/master/Aplikacja%20pogodowa%20na%20Androida.pptx)
 ## Część Praktyczna
 
 ## Zadanie 1: 
