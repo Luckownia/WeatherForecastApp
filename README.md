@@ -24,7 +24,7 @@
        tu dodam kod essa />
    ```
    - Zmień kolor tekstu na zielony, użyj do tego dowolnego sposobu.
-3.. **Sprawdź czy działa:**
+3. **Sprawdź czy działa:**
   - Uruchom aplikacje w emulatorze i zobacz czy twój tekst poprawnie się wyświetla.
 
 ## Zadanie 2: 
