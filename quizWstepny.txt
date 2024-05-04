@@ -1,0 +1,25 @@
+1.Jak nazywa się plik, w którym definiowane są interfejsy użytkownika w Android Studio?
+a) MainActivity.java
+b) activity_main.xml (Poprawna)
+c) strings.xml
+d) styles.xml
+
+2. Co to jest AndroidManifest.xml?
+a) Plik konfiguracyjny zawierający informacje o aplikacji, takie jak uprawnienia, aktywności i serwisy. (Poprawna)
+b) Folder, w którym przechowywane są kody źródłowe aplikacji.
+c) Narzędzie do projektowania interfejsu użytkownika w Android Studio.
+d) Klasa Java zawierająca logikę biznesową aplikacji.
+
+3. Jak można uzyskać lokalizację użytkownika w aplikacji Android?
+a) Poprzez wykorzystanie LocationManager i zarejestrowanie LocationListener. (Poprawna)
+b) Wyłącznie poprzez usługi Google, takie jak Google Maps.
+c) Poprzez wykorzystanie czujników biometrycznych w urządzeniu.
+d) Tylko poprzez ręczne wprowadzenie danych przez użytkownika.
+
+4. Jaka metoda służy do powiązania elementu interfejsu z plikiem Javy:
+a) getByName()
+b) findById
+c) findViewById() (Poprawna)
+d) getElementById()
+
+Jeszcze jakieś dwie związane z API się doda
