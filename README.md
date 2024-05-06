@@ -64,22 +64,18 @@
 
 ## Zadanie 3: 
 
-**Cel:** Nauka podstaw obsługi danych z Api
+**Cel:** Nauka podstaw obsługi danych z Api.
 
 ### Kroki:
-1. **Dodaj potrzebny kod do ściągania danych z Api:**
-   - Otwórz plik `MainActivity.java`.
-   - Dodaj poniższe importy bibliotek.
-   ```xml
-   biblioteki jakies zeby to api dzialalo
-   ```
-   - Dodaj poniższy kod #w jakieś tam miejsce to tu trzeba będzie napisać
-   ```xml
-   tutaj tak żeby ściągało to api dane
-   ```  
-2. **Spraw by kliknięcie guzika zmieniało treść napisu na opis aktualnej pogody w Krakowie:**
-   - Otwórz plik `MainActivity.java`.
-   - jakieś tam kroki
-   - tutaj jakieś tam dalsze kroki
-3. **Sprawdź czy działa:**
-  - Uruchom aplikacje w emulatorze i zobacz czy wszystko wyświetla się poprawnie.
+1. **Otwórz gotowy projekt, który już będzie zawierał część potrzebnego kodu:**
+   - Pobierz [archiwum](https://github.com/Luckownia/WeatherForecastApp/blob/master/Zadanie3.rar)
+   - Rozpakuj je i otwórz w Android Studio (poczekaj aż wszystko się zsynchronizuje).
+   - Zapoznaj się z kodem, projekt zawiera działające Api pobierające dane o aktualnej pogodzie w Krakowie.
+
+2. **Uruchom aplikacje i zobacz jak wygląda otrzymana odpowiedź Json:**
+   - Uruchom aplikacje i kliknij w przycisk. W konsoli Logcat (jeżeli nie wiesz jak ją uruchomić to zajrzyj do prezentacji) pojawił się link do odpowiedzi Json. Wejdź w ten link.
+   - Żeby uzyskać czytelniejszą formę odpowiedzi udaj się na [jsonviewer.stack.hu](https://jsonviewer.stack.hu/).
+   - Zobacz co zawiera ta odpowiedź.
+3. **Spraw by po kliknięciu przycisku napis Hello World! zamieniał się na opis aktualnej pogody w Krakowie:**
+  - Wróć do pliku `MainActivity.java`.
+  - Odszukaj fragment, w którym musisz wstawić swój kod. <WIP>
