@@ -80,7 +80,7 @@
   - Odszukaj fragment, w którym musisz wstawić swój kod.
   - Napisz kod, który wyłuska dane o opisie (description) pogody z obiektu JSON i przypisze je do zmiennej. Sprawdź w jakiej tablicy opis pogody się znajduje.
   - Skorzystaj z metod getJSONArray(), getJSONObject(). Możesz wykorzystać ten [poradnik](https://www.baeldung.com/java-jsonobject-get-value#getting-values-directly).
-  - Korzystając z metody setText() spraw, by tekst o ID "Description" zmienił się na aktualny opis pogody.
+  - Korzystając z metody setText() i zmiennej Description (która zawiera element interfejsu TextView o ID TextView) spraw, by tekst na ekranie zmienił się na aktualny opis pogody.
   - W razie problemów zajrzyj do [prezentacji](https://github.com/Luckownia/WeatherForecastApp/blob/master/Aplikacja%20pogodowa%20na%20Androida.pptx).
 4. **Spraw by po kliknięciu przycisku napis Hello World! zamieniał się na opis aktualnej pogody w Krakowie:**
   - Uruchom ponownie aplikacje i zobacz czy wszystko działa jak powinno. Jeżeli działa to wyślij zrzut ekranu na Upel.
