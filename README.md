@@ -14,7 +14,8 @@
 ### Kroki:
 1. **Stwórz nowy projekt:**
   - Kliknij New Project
-  - wybierz Empty Views Activity, jako język wybierz Java.
+  - Wybierz Empty Views Activity, jako język wybierz Java.
+  - Poczekaj, aż zakończy się początkowa konfiguracja (pasek postępu na dole ekranu).
     
 2. **Dodaj tekst:**
   - Otwórz plik `activity_main.xml`.
