@@ -80,3 +80,4 @@
   - Wróć do pliku `MainActivity.java`.
   - Odszukaj fragment, w którym musisz wstawić swój kod.
   - Napisz kod, który wyłuska dane o opisie (description) pogody z obiektu JSON. Sprawdź w jakiej tablicy opis pogody się znajduje.
+  - Skorzystaj z metod getJSONArray(), getJSONObject() 
