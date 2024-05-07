@@ -78,4 +78,5 @@
    - Zobacz co zawiera ta odpowiedź.
 3. **Spraw by po kliknięciu przycisku napis Hello World! zamieniał się na opis aktualnej pogody w Krakowie:**
   - Wróć do pliku `MainActivity.java`.
-  - Odszukaj fragment, w którym musisz wstawić swój kod. <WIP>
+  - Odszukaj fragment, w którym musisz wstawić swój kod.
+  - Napisz kod, który wyłuska dane o opisie (description) pogody z obiektu JSON. Sprawdź w jakiej tablicy opis pogody się znajduje.
