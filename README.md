@@ -13,12 +13,12 @@
 
 ### Kroki:
 1. **Stwórz nowy projekt:**
-   - Kliknij New Project
-   - wybierz Empty Views Activity, jako język wybierz Java.
+  - Kliknij New Project
+  - wybierz Empty Views Activity, jako język wybierz Java.
     
 2. **Dodaj tekst:**
   - Otwórz plik `activity_main.xml`.
-   - Dodaj dowolny tekst za pomocą kodu podanego poniżej, albo za pomocą edytora designu dostępnego w prawym górnym rogu lub po użyciu kombinacji klawiszy Alt+Shift+Left
+  - Dodaj dowolny tekst za pomocą kodu podanego poniżej, albo za pomocą edytora designu dostępnego w prawym górnym rogu lub po użyciu kombinacji klawiszy Alt+Shift+Left
    ```xml
    <TextView
         android:id="@+id/textView"
@@ -30,10 +30,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
    ```
-   - Jeżeli używasz edytora designu, pamiętaj aby w Attributes -> Layout -> Constraint Widget ustawić Constraints, inaczej będzie się źle wyświetlało w aplikacji.
-   - Zmień kolor tekstu na zielony, użyj do tego dowolnego sposobu.
+  - Jeżeli używasz edytora designu, pamiętaj aby w Attributes -> Layout -> Constraint Widget ustawić Constraints, inaczej będzie się źle wyświetlało w aplikacji.
+  - Zmień kolor tekstu na zielony, użyj do tego dowolnego sposobu.
 3. **Sprawdź czy działa:**
-  - Uruchom aplikacje w emulatorze i zobacz czy twój tekst poprawnie się wyświetla.
+  - Uruchom aplikacje w emulatorze i zobacz czy twój tekst poprawnie się wyświetla. Jeśli się wyświetla to wyślij zrzut ekranu na Upel.
 
 ## Zadanie 2: 
 
@@ -41,8 +41,8 @@
 
 ### Kroki:
 1. **Dodaj przycisk:**
-   - Otwórz plik `activity_main.xml`.
-   - Dodaj przycisk za pomocą edytora designu, lub użyj kodu poniżej.
+  - Otwórz plik `activity_main.xml`.
+  - Dodaj przycisk za pomocą edytora designu, lub użyj kodu poniżej.
    ```xml
    <Button
         android:id="@+id/button"
@@ -56,11 +56,11 @@
    ```
     
 2. **Spraw by kliknięcie guzika zmieniało treść napisu:**
-   - Otwórz plik `MainActivity.java`.
-   - Spraw aby po kliknięciu przycisku zmieniał się tekst dodany w poprzednim zadaniu na dowolny inny. Zastosuj metodę pokazaną na prezentacji, lub zadeklaruj funkcję w `MainActivity.java` i przypisz ją do guzika w `activity_main.xml` używając Attributes -> onClick
-   - Pamiętaj o zaimportowaniu odpowiednich bibliotek, wykorzystaj findViewById. Metoda guzika odpowiadająca za zmienianie tekstu musi znajdować się w metodzie onCreate().
+  - Otwórz plik `MainActivity.java`.
+  - Spraw aby po kliknięciu przycisku zmieniał się tekst dodany w poprzednim zadaniu na dowolny inny. Zastosuj metodę pokazaną na prezentacji, lub zadeklaruj funkcję w `MainActivity.java` i przypisz ją do guzika w `activity_main.xml` używając Attributes -> onClick
+  - Pamiętaj o zaimportowaniu odpowiednich bibliotek, wykorzystaj findViewById. Metoda guzika odpowiadająca za zmienianie tekstu musi znajdować się w metodzie onCreate().
 3. **Sprawdź czy działa:**
-  - Uruchom aplikacje w emulatorze i zobacz czy twój przycisk działa poprawnie.
+  - Uruchom aplikacje w emulatorze i zobacz czy twój przycisk działa poprawnie. Jeżeli działa to wyślij zrzut ekranu na Upel.
 
 ## Zadanie 3: 
 
@@ -68,16 +68,20 @@
 
 ### Kroki:
 1. **Otwórz gotowy projekt, który już będzie zawierał część potrzebnego kodu:**
-   - Pobierz [archiwum](https://github.com/Luckownia/WeatherForecastApp/blob/master/Zadanie3.rar)
-   - Rozpakuj je i otwórz w Android Studio (poczekaj aż wszystko się zsynchronizuje).
-   - Zapoznaj się z kodem, projekt zawiera działające Api pobierające dane o aktualnej pogodzie w Krakowie.
-
+  - Pobierz [archiwum](https://github.com/Luckownia/WeatherForecastApp/blob/master/Zadanie3.rar)
+  - Rozpakuj je i otwórz w Android Studio (poczekaj aż wszystko się zsynchronizuje).
+  - Zapoznaj się z kodem, projekt zawiera działające Api pobierające dane o aktualnej pogodzie w Krakowie.
 2. **Uruchom aplikacje i zobacz jak wygląda otrzymana odpowiedź Json:**
-   - Uruchom aplikacje i kliknij w przycisk. W konsoli Logcat (jeżeli nie wiesz jak ją uruchomić to zajrzyj do prezentacji) pojawił się link do odpowiedzi Json. Wejdź w ten link.
-   - Żeby uzyskać czytelniejszą formę odpowiedzi udaj się na [jsonviewer.stack.hu](https://jsonviewer.stack.hu/).
-   - Zobacz co zawiera ta odpowiedź.
+  - Uruchom aplikacje i kliknij w przycisk. W konsoli Logcat (jeżeli nie wiesz jak ją uruchomić to zajrzyj do prezentacji) pojawił się link do odpowiedzi Json. Wejdź w ten link.
+  - Żeby uzyskać czytelniejszą formę odpowiedzi udaj się na [jsonviewer.stack.hu](https://jsonviewer.stack.hu/).
+  - Zobacz co zawiera ta odpowiedź.
 3. **Spraw by po kliknięciu przycisku napis Hello World! zamieniał się na opis aktualnej pogody w Krakowie:**
   - Wróć do pliku `MainActivity.java`.
   - Odszukaj fragment, w którym musisz wstawić swój kod.
-  - Napisz kod, który wyłuska dane o opisie (description) pogody z obiektu JSON. Sprawdź w jakiej tablicy opis pogody się znajduje.
-  - Skorzystaj z metod getJSONArray(), getJSONObject() 
+  - Napisz kod, który wyłuska dane o opisie (description) pogody z obiektu JSON i przypisze je do zmiennej. Sprawdź w jakiej tablicy opis pogody się znajduje.
+  - Skorzystaj z metod getJSONArray(), getJSONObject(). Możesz wykorzystać ten [poradnik](https://www.baeldung.com/java-jsonobject-get-value#getting-values-directly).
+  - Korzystając z metody setText() spraw, by tekst o ID "Description" zmienił się na aktualny opis pogody.
+  - W razie problemów zajrzyj do [prezentacji](https://github.com/Luckownia/WeatherForecastApp/blob/master/Aplikacja%20pogodowa%20na%20Androida.pptx).
+4. **Spraw by po kliknięciu przycisku napis Hello World! zamieniał się na opis aktualnej pogody w Krakowie:**
+  - Uruchom ponownie aplikacje i zobacz czy wszystko działa jak powinno. Jeżeli działa to wyślij zrzut ekranu na Upel.
+
