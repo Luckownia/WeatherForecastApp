@@ -1,14 +1,14 @@
-1.Jak nazywa się plik, w którym definiowane są interfejsy użytkownika w Android Studio?
+1. Jak nazywa się plik, w którym definiowane są interfejsy użytkownika w Android Studio?
 a) MainActivity.java
 b) activity_main.xml (Poprawna)
 c) strings.xml
 d) styles.xml
 
-2. Co to jest AndroidManifest.xml?
-a) Plik konfiguracyjny zawierający informacje o aplikacji, takie jak uprawnienia, aktywności i serwisy. (Poprawna)
-b) Folder, w którym przechowywane są kody źródłowe aplikacji.
-c) Narzędzie do projektowania interfejsu użytkownika w Android Studio.
-d) Klasa Java zawierająca logikę biznesową aplikacji.
+2. Do czego służy plik MainActivity.java w Android Studio?
+a) Do przechowywania danych aplikacji.
+b) Do definiowania interfejsu użytkownika za pomocą XML.
+c) Do implementowania logiki biznesowej aplikacji.
+d) Do zarządzania działaniem głównej aktywności aplikacji oraz obsługi interakcji użytkownika. (Poprawna)
 
 3. Jak można uzyskać lokalizację użytkownika w aplikacji Android?
 a) Poprzez wykorzystanie LocationManager i zarejestrowanie LocationListener. (Poprawna)
@@ -22,4 +22,15 @@ b) findById
 c) findViewById() (Poprawna)
 d) getElementById()
 
-Jeszcze jakieś dwie związane z API się doda
+5. Jakie jest główne zastosowanie API w kontekście aplikacji mobilnych?
+a) Do wyświetlania reklam
+b) Do zarządzania bazą danych aplikacji
+c) Do komunikacji z zewnętrznymi serwisami i pobierania danych  (Poprawna)
+d) Do implementacji funkcji użytkowej w aplikacji
+
+6. Jak można uzyskać wartość stringa z obiektu JSON w języku Java?
+a) Za pomocą metody retrieveString()
+b) Poprzez wywołanie metody getStringValue()
+c) Korzystając z metody getString() (Poprawna)
+d) Przez użycie metody getValueString()
+
