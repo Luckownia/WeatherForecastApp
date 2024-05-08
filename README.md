@@ -3,6 +3,7 @@
 ## Część Teoretyczna
 ### Źródła
 - [Dokumentacja Android Developer](https://developer.android.com/docs)
+- [Weather API](https://openweathermap.org/api)
 ### Prezentacja
 - [Link do prezentacji](https://github.com/Luckownia/WeatherForecastApp/blob/master/Aplikacja%20pogodowa%20na%20Androida.pptx)
 ## Część Praktyczna
