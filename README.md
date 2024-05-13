@@ -4,7 +4,7 @@
 ### Źródła
 - [Dokumentacja Android Developer](https://developer.android.com/docs)
 - [Weather API](https://openweathermap.org/api)
-- [JsonViewer](jsonviewer.stack.hu)
+- [JsonViewer](https://jsonviewer.stack.hu)
 ### Prezentacja
 - [Link do prezentacji](https://github.com/Luckownia/WeatherForecastApp/blob/master/Aplikacja%20pogodowa%20na%20Androida.pptx)
 - [Link do prezentacji w przeglądarce](https://www.canva.com/design/DAGEwcgYc-o/AsfCxI0Z0bzzugm9d2XWvg/view?utm_content=DAGEwcgYc-o&utm_campaign=designshare&utm_medium=link&utm_source=editor)
